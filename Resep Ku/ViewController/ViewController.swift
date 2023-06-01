@@ -19,15 +19,16 @@ class ViewController: UIViewController, RecipeManagerDelegate {
         super.viewDidLoad()
         
         recipeTable.dataSource = self
-        
         recipeManager.delegate = self
+        
+        recipeTable.register(UINib(nibName: "RecipeCell", bundle: nil), forCellReuseIdentifier: "ReuseIdentifier")
+        
         recipeManager.fetchRecipe(q: "")
     }
 
     func didUpdateRecipes(recipes: [RecipeResponse]?) {
         recipe = recipes ?? []
         recipeTable.reloadData()
-        recipeTable.refreshControl?.endRefreshing()
     }
     
     func didFailWithError(error: Error?) {
@@ -41,8 +42,10 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier", for: indexPath)
-        cell.textLabel?.text = recipe[indexPath.row].strMeal
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier", for: indexPath) as! RecipeCell
+        cell.labelTitle.text = recipe[indexPath.row].strMeal ?? "-"
+        cell.labeltag.text = recipe[indexPath.row].strTags ?? "-"
+        cell.labelCategory.text = recipe[indexPath.row].strCategory ?? "-"
         return cell
     }
 }
