@@ -7,16 +7,19 @@
 
 import UIKit
 
-class RecipeCell: UITableViewCell {
+class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
 
     @IBOutlet weak var ivRecipe: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelCategory: UILabel!
     @IBOutlet weak var labeltag: UILabel!
     
+    private var thumbnailManager = ThumbnailManager()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        thumbnailManager.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,4 +28,17 @@ class RecipeCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+    func didUpdateThumbnail(data: Data) {
+        DispatchQueue.main.async {
+            self.ivRecipe.image = UIImage(data: data)
+        }
+    }
+    
+    func fetchImage(urlString: String) {
+        thumbnailManager.fetchThumbnail(urlString: urlString)
+    }
 }

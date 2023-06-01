@@ -47,9 +47,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier", for: indexPath) as! RecipeCell
-        cell.labelTitle.text = recipe[indexPath.row].strMeal ?? "-"
-        cell.labeltag.text = recipe[indexPath.row].strTags ?? "-"
-        cell.labelCategory.text = recipe[indexPath.row].strCategory ?? "-"
+        let recipeResponse = recipe[indexPath.row]
+        cell.labelTitle.text = recipeResponse.strMeal ?? "-"
+        cell.labeltag.text = recipeResponse.strTags ?? "-"
+        cell.labelCategory.text = recipeResponse.strCategory ?? "-"
+        cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
         return cell
     }
 }

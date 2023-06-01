@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE0A2D272A28F47E00A50113 /* ThumbnailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A2D262A28F47E00A50113 /* ThumbnailManager.swift */; };
 		DE640C0C2A28E823003518D0 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE640C0A2A28E823003518D0 /* RecipeCell.swift */; };
 		DE640C0D2A28E823003518D0 /* RecipeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE640C0B2A28E823003518D0 /* RecipeCell.xib */; };
 		DE9157B52A24B3DD003D45E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9157B42A24B3DD003D45E8 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE0A2D262A28F47E00A50113 /* ThumbnailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailManager.swift; sourceTree = "<group>"; };
 		DE640C0A2A28E823003518D0 /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		DE640C0B2A28E823003518D0 /* RecipeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecipeCell.xib; sourceTree = "<group>"; };
 		DE9157B12A24B3DD003D45E8 /* Resep Ku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Resep Ku.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +103,7 @@
 			children = (
 				DEC1B0192A274994003EBD8C /* Response */,
 				DEC1B01A2A274A2F003EBD8C /* RecipeManager.swift */,
+				DE0A2D262A28F47E00A50113 /* ThumbnailManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE0A2D272A28F47E00A50113 /* ThumbnailManager.swift in Sources */,
 				DE9157B92A24B3DD003D45E8 /* ViewController.swift in Sources */,
 				DEC1B0182A273F13003EBD8C /* SearchRecipeResponse.swift in Sources */,
 				DE9157B52A24B3DD003D45E8 /* AppDelegate.swift in Sources */,
