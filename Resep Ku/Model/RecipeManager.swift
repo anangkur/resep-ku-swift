@@ -20,31 +20,21 @@ struct RecipeManager {
     
     func fetchRecipe(q: String) {
         let urlString = "\(baseUrl)/search.php?s=\(q)"
-        performRequest(urlString: urlString)
-    }
-    
-    private func performRequest(urlString: String) {
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url, completionHandler: handle(data: urlResponse: error: ))
-            task.resume()
-        }
-    }
-    
-    private func handle(data: Data?, urlResponse: URLResponse?, error: Error?) {
-        if (error != nil) {
-            DispatchQueue.main.async {
-                delegate?.didFailWithError(error: error)
-            }
-            return
-        }
-        
-        if let safeData = data {
-            if let searchRecipeResponse = parseJson(data: safeData) {
-                DispatchQueue.main.async {
-                    delegate?.didUpdateRecipes(recipes: searchRecipeResponse.meals)
+            let task = session.dataTask(with: url) {data,response,error in
+                if (error != nil) {
+                    delegate?.didFailWithError(error: error)
+                    return
+                }
+                
+                if let safeData = data {
+                    if let searchRecipeResponse = parseJson(data: safeData) {
+                        delegate?.didUpdateRecipes(recipes: searchRecipeResponse.meals)
+                    }
                 }
             }
+            task.resume()
         }
     }
     

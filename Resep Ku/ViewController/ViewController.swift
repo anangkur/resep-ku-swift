@@ -27,12 +27,16 @@ class ViewController: UIViewController, RecipeManagerDelegate {
     }
 
     func didUpdateRecipes(recipes: [RecipeResponse]?) {
-        recipe = recipes ?? []
-        recipeTable.reloadData()
+        DispatchQueue.main.async {
+            self.recipe = recipes ?? []
+            self.recipeTable.reloadData()
+        }
     }
     
     func didFailWithError(error: Error?) {
-        print("didFailWithError: \(error.debugDescription)")
+        DispatchQueue.main.async {
+            print("didFailWithError: \(error.debugDescription)")
+        }
     }
 }
 
