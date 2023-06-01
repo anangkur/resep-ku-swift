@@ -31,7 +31,7 @@ class ViewController: UIViewController, RecipeManagerDelegate {
     }
     
     func didFailWithError(error: Error?) {
-        print("didFailWithError: \(error)")
+        print("didFailWithError: \(error.debugDescription)")
     }
 }
 
