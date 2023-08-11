@@ -44,9 +44,7 @@ struct RecipeManager {
         do {
             try returnValue = jsonDecoder.decode(SearchRecipeResponse.self, from: data)
         } catch {
-            DispatchQueue.main.async {
-                delegate?.didFailWithError(error: error)
-            }
+            delegate?.didFailWithError(error: error)
         }
         return returnValue
     }
