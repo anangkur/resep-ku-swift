@@ -13,13 +13,16 @@ class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelCategory: UILabel!
     @IBOutlet weak var labeltag: UILabel!
+    @IBOutlet weak var root: UIView!
     
+    var onClickItem: (() -> Void)? = nil
     private var thumbnailManager = ThumbnailManager()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         thumbnailManager.delegate = self
+        root.setOnClickListener { self.onClickItem?() }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -40,5 +43,9 @@ class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
     
     func fetchImage(urlString: String) {
         thumbnailManager.fetchThumbnail(urlString: urlString)
+    }
+    
+    private func onItemClicked(sender : UITapGestureRecognizer) {
+        onClickItem?()
     }
 }

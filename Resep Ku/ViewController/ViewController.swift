@@ -52,6 +52,7 @@ extension ViewController: UITableViewDataSource {
         cell.labeltag.text = recipeResponse.strTags ?? "-"
         cell.labelCategory.text = recipeResponse.strCategory ?? "-"
         cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
+        cell.onClickItem = { print("item clicked: \(recipeResponse.strMeal)") }
         return cell
     }
 }
