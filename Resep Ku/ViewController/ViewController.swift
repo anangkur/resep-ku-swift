@@ -38,6 +38,11 @@ class ViewController: UIViewController, RecipeManagerDelegate {
             print("didFailWithError: \(error.debugDescription)")
         }
     }
+    
+    private func goToDetailRecipe(title: String) {
+        print("goToDetailRecipe: \(title) | navigationController is null: \(self.navigationController == nil)")
+        self.navigationController?.pushViewController(DetailRecipeViewController(), animated: true)
+    }
 }
 
 extension ViewController: UITableViewDataSource {
@@ -52,7 +57,9 @@ extension ViewController: UITableViewDataSource {
         cell.labeltag.text = recipeResponse.strTags ?? "-"
         cell.labelCategory.text = recipeResponse.strCategory ?? "-"
         cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
-        cell.onClickItem = { print("item clicked: \(recipeResponse.strMeal)") }
+        cell.onClickItem = {
+            self.goToDetailRecipe(title: recipeResponse.strMeal ?? "-")
+        }
         return cell
     }
 }
