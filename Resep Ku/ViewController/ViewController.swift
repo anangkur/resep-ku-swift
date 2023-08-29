@@ -39,9 +39,8 @@ class ViewController: UIViewController, RecipeManagerDelegate {
         }
     }
     
-    private func goToDetailRecipe(title: String) {
-        print("goToDetailRecipe: \(title) | navigationController is null: \(self.navigationController == nil)")
-        self.navigationController?.pushViewController(DetailRecipeViewController(), animated: true)
+    private func goToDetailRecipe(recipeResponse: RecipeResponse) {
+        self.navigationController?.pushViewController(DetailRecipeViewController(recipeResponse: recipeResponse), animated: true)
     }
 }
 
@@ -58,7 +57,7 @@ extension ViewController: UITableViewDataSource {
         cell.labelCategory.text = recipeResponse.strCategory ?? "-"
         cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
         cell.onClickItem = {
-            self.goToDetailRecipe(title: recipeResponse.strMeal ?? "-")
+            self.goToDetailRecipe(recipeResponse: recipeResponse)
         }
         return cell
     }

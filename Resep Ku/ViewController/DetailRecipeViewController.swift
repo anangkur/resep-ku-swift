@@ -7,12 +7,44 @@
 
 import UIKit
 
-class DetailRecipeViewController: UIViewController {
+class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
+    
+    @IBOutlet weak var desctiptionRecipe: UILabel!
+    @IBOutlet weak var imageRecipe: UIImageView!
+    @IBOutlet weak var titleRecipe: UILabel!
+    
+    private var recipeResponse: RecipeResponse? = nil
+    private var thumbnailManager = ThumbnailManager()
+    
+    init(
+        recipeResponse: RecipeResponse
+    ) {
+        self.recipeResponse = recipeResponse
+        super.init(nibName: "DetailRecipeViewController", bundle: Bundle.main)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Detail Recipe"
+        thumbnailManager.delegate = self
+        self.title = recipeResponse?.strMeal ?? "Detail Recipe"
+        self.titleRecipe.text = recipeResponse?.strMeal ?? "-"
+        self.desctiptionRecipe.text = recipeResponse?.strInstructions ?? "-"
+        thumbnailManager.fetchThumbnail(urlString: recipeResponse?.strMealThumb ?? "")
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
+    }
+    
+    func didUpdateThumbnail(data: Data) {
+        DispatchQueue.main.async {
+            self.imageRecipe.image = UIImage(data: data)
+        }
     }
 
     /*
