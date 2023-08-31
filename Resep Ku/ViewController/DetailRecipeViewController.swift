@@ -12,6 +12,9 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     @IBOutlet weak var desctiptionRecipe: UILabel!
     @IBOutlet weak var imageRecipe: UIImageView!
     @IBOutlet weak var titleRecipe: UILabel!
+    @IBOutlet weak var labelCategory: UILabel!
+    @IBOutlet weak var labelIngridients: UILabel!
+    @IBOutlet weak var labelRecipe: UILabel!
     
     private var recipeResponse: RecipeResponse? = nil
     private var thumbnailManager = ThumbnailManager()
@@ -33,7 +36,9 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
         thumbnailManager.delegate = self
         self.title = recipeResponse?.strMeal ?? "Detail Recipe"
         self.titleRecipe.text = recipeResponse?.strMeal ?? "-"
-        self.desctiptionRecipe.text = recipeResponse?.strInstructions ?? "-"
+        self.labelRecipe.text = recipeResponse?.strInstructions ?? "-"
+        self.labelCategory.text = "\(recipeResponse?.strCategory ?? "") - \(recipeResponse?.strArea ?? "") - \(recipeResponse?.strTags ?? "")"
+        self.labelIngridients.text = recipeResponse?.createRecipients() ?? "-"
         thumbnailManager.fetchThumbnail(urlString: recipeResponse?.strMealThumb ?? "")
     }
     
