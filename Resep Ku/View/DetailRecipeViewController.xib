@@ -10,12 +10,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailRecipeViewController" customModule="Resep_Ku" customModuleProvider="target">
             <connections>
-                <outlet property="desctiptionRecipe" destination="QG8-jd-7NZ" id="JHN-iO-QdQ"/>
-                <outlet property="imageRecipe" destination="05x-lj-GtR" id="03L-XX-JA5"/>
-                <outlet property="labelCategory" destination="Agr-Z5-9XB" id="eaV-CX-Noh"/>
-                <outlet property="labelIngridients" destination="FUk-ct-z6G" id="AOk-6Z-pH1"/>
-                <outlet property="labelRecipe" destination="QG8-jd-7NZ" id="7mA-X0-qQr"/>
-                <outlet property="titleRecipe" destination="tDw-9X-HZ8" id="Paf-JA-kPV"/>
+                <outlet property="iconWeb" destination="2sP-OW-3S3" id="dr4-rZ-RQr"/>
+                <outlet property="iconYoutube" destination="hbW-9A-cBT" id="f65-Kh-1Rg"/>
+                <outlet property="imageThumbnail" destination="05x-lj-GtR" id="Ora-su-TOD"/>
+                <outlet property="labelCategory" destination="Agr-Z5-9XB" id="XfV-g0-K4q"/>
+                <outlet property="labelIngridients" destination="FUk-ct-z6G" id="Okf-et-IXg"/>
+                <outlet property="labelRecipe" destination="QG8-jd-7NZ" id="Y1v-cL-Aq5"/>
+                <outlet property="labelTitle" destination="tDw-9X-HZ8" id="1Hr-qX-N4O"/>
                 <outlet property="view" destination="ts9-IZ-duA" id="WRl-37-b98"/>
             </connections>
         </placeholder>
@@ -37,59 +38,81 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDw-9X-HZ8" userLabel="labelTitle">
-                                    <rect key="frame" x="16" y="391" width="343" height="28.666666666666686"/>
+                                    <rect key="frame" x="16" y="445" width="343" height="28.666666666666686"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Recipe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QG8-jd-7NZ" userLabel="labelRecipe">
-                                    <rect key="frame" x="16" y="574.66666666666663" width="343" height="20.333333333333371"/>
+                                    <rect key="frame" x="16" y="628.66666666666663" width="343" height="20.333333333333371"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGD-bC-NZW" userLabel="labelTitleRecipe">
-                                    <rect key="frame" x="16" y="538" width="343" height="28.666666666666629"/>
+                                    <rect key="frame" x="16" y="592" width="343" height="28.666666666666629"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agr-Z5-9XB" userLabel="labelCategory">
-                                    <rect key="frame" x="16" y="427.66666666666669" width="343" height="21"/>
+                                    <rect key="frame" x="16" y="481.66666666666663" width="343" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingridients" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxM-Ul-bFX" userLabel="labelTitleIgridients">
-                                    <rect key="frame" x="16" y="464.66666666666663" width="343" height="29"/>
+                                    <rect key="frame" x="16" y="518.66666666666663" width="343" height="29"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Inngridients" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUk-ct-z6G" userLabel="labelIngridients">
-                                    <rect key="frame" x="16" y="501.66666666666663" width="89.666666666666671" height="20.333333333333371"/>
+                                    <rect key="frame" x="16" y="555.66666666666663" width="89.666666666666671" height="20.333333333333371"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2sP-OW-3S3" userLabel="iconWeb">
+                                    <rect key="frame" x="0.0" y="391" width="48" height="38"/>
+                                    <accessibility key="accessibilityConfiguration" label="iconWeb"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="iconWeb"/>
+                                    <connections>
+                                        <action selector="openUrl:" destination="-1" eventType="touchUpInside" id="wNT-5W-XUb"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbW-9A-cBT" userLabel="iconYoutube">
+                                    <rect key="frame" x="48" y="391" width="48" height="38"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="iconYoutube"/>
+                                    <connections>
+                                        <action selector="openYoutube:" destination="-1" eventType="touchUpInside" id="5d9-nz-MDr"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="FUk-ct-z6G" firstAttribute="top" secondItem="LxM-Ul-bFX" secondAttribute="bottom" constant="8" id="1Eh-jl-xly"/>
                                 <constraint firstItem="QG8-jd-7NZ" firstAttribute="top" secondItem="cGD-bC-NZW" secondAttribute="bottom" constant="8" id="1nB-b6-Rid"/>
                                 <constraint firstAttribute="trailing" secondItem="QG8-jd-7NZ" secondAttribute="trailing" constant="16" id="DVz-Gl-Vqe"/>
+                                <constraint firstItem="hbW-9A-cBT" firstAttribute="top" secondItem="2sP-OW-3S3" secondAttribute="top" id="G7O-GH-sss"/>
                                 <constraint firstAttribute="trailing" secondItem="05x-lj-GtR" secondAttribute="trailing" id="Jhy-UX-PgU"/>
                                 <constraint firstItem="tDw-9X-HZ8" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="LCN-gG-bnf"/>
+                                <constraint firstItem="hbW-9A-cBT" firstAttribute="bottom" secondItem="2sP-OW-3S3" secondAttribute="bottom" id="Mi2-E9-1FU"/>
+                                <constraint firstItem="2sP-OW-3S3" firstAttribute="top" secondItem="05x-lj-GtR" secondAttribute="bottom" constant="16" id="Qyn-rF-KJ4"/>
                                 <constraint firstItem="LxM-Ul-bFX" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="RFv-Vt-4wx"/>
                                 <constraint firstItem="QG8-jd-7NZ" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="S2r-2q-oht"/>
                                 <constraint firstAttribute="trailing" secondItem="tDw-9X-HZ8" secondAttribute="trailing" constant="16" id="SFh-0C-kih"/>
-                                <constraint firstItem="tDw-9X-HZ8" firstAttribute="top" secondItem="05x-lj-GtR" secondAttribute="bottom" constant="16" id="Up1-3p-GwL"/>
+                                <constraint firstItem="tDw-9X-HZ8" firstAttribute="top" secondItem="2sP-OW-3S3" secondAttribute="bottom" constant="16" id="Up1-3p-GwL"/>
                                 <constraint firstItem="05x-lj-GtR" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" id="XA7-sN-Z0C"/>
-                                <constraint firstItem="LxM-Ul-bFX" firstAttribute="top" secondItem="Agr-Z5-9XB" secondAttribute="bottom" constant="16" id="XXB-HH-aT0"/>
+                                <constraint firstItem="2sP-OW-3S3" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" id="Xb2-Ch-z1c"/>
+                                <constraint firstItem="hbW-9A-cBT" firstAttribute="leading" secondItem="2sP-OW-3S3" secondAttribute="trailing" id="ZMg-xo-1gR" userLabel="iconYoutube.leading = iconWeb.trailing"/>
                                 <constraint firstItem="cGD-bC-NZW" firstAttribute="top" secondItem="FUk-ct-z6G" secondAttribute="bottom" constant="16" id="a9C-FY-bLq"/>
                                 <constraint firstItem="Agr-Z5-9XB" firstAttribute="top" secondItem="tDw-9X-HZ8" secondAttribute="bottom" constant="8" id="aU1-wi-qCt"/>
                                 <constraint firstItem="cGD-bC-NZW" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="b60-s8-I7r"/>
                                 <constraint firstAttribute="trailing" secondItem="Agr-Z5-9XB" secondAttribute="trailing" constant="16" id="bxG-4S-uKt"/>
+                                <constraint firstItem="LxM-Ul-bFX" firstAttribute="top" secondItem="Agr-Z5-9XB" secondAttribute="bottom" constant="16" id="ed1-Hr-KV1"/>
                                 <constraint firstAttribute="trailing" secondItem="cGD-bC-NZW" secondAttribute="trailing" constant="16" id="fMX-nM-hkN"/>
                                 <constraint firstAttribute="trailing" secondItem="LxM-Ul-bFX" secondAttribute="trailing" constant="16" id="kIH-uR-WLg"/>
                                 <constraint firstItem="FUk-ct-z6G" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="mWN-rO-7YH"/>
@@ -120,6 +143,8 @@
         </view>
     </objects>
     <resources>
+        <image name="iconWeb" width="24" height="24"/>
+        <image name="iconYoutube" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
