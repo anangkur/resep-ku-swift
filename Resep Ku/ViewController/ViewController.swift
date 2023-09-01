@@ -24,6 +24,8 @@ class ViewController: UIViewController, RecipeManagerDelegate {
         recipeTable.register(UINib(nibName: "RecipeCell", bundle: nil), forCellReuseIdentifier: "ReuseIdentifier")
         
         recipeManager.fetchRecipe(q: "")
+        
+        self.title = "Resep Ku"
     }
 
     func didUpdateRecipes(recipes: [RecipeResponse]?) {
