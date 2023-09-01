@@ -9,11 +9,12 @@ import UIKit
 
 class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
 
-    @IBOutlet weak var ivRecipe: UIImageView!
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelCategory: UILabel!
-    @IBOutlet weak var labeltag: UILabel!
+    
     @IBOutlet weak var root: UIView!
+    @IBOutlet weak var labelTags: UILabel!
+    @IBOutlet weak var imageRecipe: UIImageView!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
     
     var onClickItem: (() -> Void)? = nil
     private var thumbnailManager = ThumbnailManager()
@@ -37,7 +38,7 @@ class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
     
     func didUpdateThumbnail(data: Data) {
         DispatchQueue.main.async {
-            self.ivRecipe.image = UIImage(data: data)
+            self.imageRecipe.image = UIImage(data: data)
         }
     }
     

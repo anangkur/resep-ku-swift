@@ -55,8 +55,8 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier", for: indexPath) as! RecipeCell
         let recipeResponse = recipe[indexPath.row]
         cell.labelTitle.text = recipeResponse.strMeal ?? "-"
-        cell.labeltag.text = recipeResponse.strTags ?? "-"
-        cell.labelCategory.text = recipeResponse.strCategory ?? "-"
+        cell.labelDescription.text = recipeResponse.createDescription()
+        cell.labelTags.text = recipeResponse.strTags
         cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
         cell.onClickItem = {
             self.goToDetailRecipe(recipeResponse: recipeResponse)

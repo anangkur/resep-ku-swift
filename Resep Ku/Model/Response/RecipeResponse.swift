@@ -58,11 +58,30 @@ struct RecipeResponse: Decodable {
     let strMeasure20: String?
     let strSource: String?
     
+    func createDescription() -> String {
+        var result = ""
+        
+        if let safeCategory = strCategory {
+            if (!safeCategory.isEmpty() && !safeCategory.isBlank()) {
+                result.append(safeCategory)
+            }
+        }
+        
+        if let safeArea = strArea {
+            if (!safeArea.isEmpty() && !safeArea.isBlank()) {
+                result.append(" - ")
+                result.append(safeArea)
+            }
+        }
+        
+        return result
+    }
+    
     func createRecipients() -> String {
         var result = ""
         
         if let safeStrIngridients1 = strIngredient1 {
-            if (safeStrIngridients1 != "" && safeStrIngridients1 != " ") {
+            if (!safeStrIngridients1.isEmpty() && !safeStrIngridients1.isBlank()) {
                 result.append(safeStrIngridients1)
                 result.append(" ")
             }
