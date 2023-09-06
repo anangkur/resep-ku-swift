@@ -7,9 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController, RecipeManagerDelegate {
+class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var labelEmpty: UILabel!
+    @IBOutlet weak var viewEmpty: UIView!
+    @IBOutlet weak var textFieldSearch: UITextField!
     @IBOutlet weak var recipeTable: UITableView!
+    
+    private let defaultError = "Unknown Error"
+    private var query = ""
     
     var recipeManager = RecipeManager()
     
@@ -20,24 +26,62 @@ class ViewController: UIViewController, RecipeManagerDelegate {
         
         recipeTable.dataSource = self
         recipeManager.delegate = self
+        textFieldSearch.delegate = self
         
         recipeTable.register(UINib(nibName: "RecipeCell", bundle: nil), forCellReuseIdentifier: "ReuseIdentifier")
         
-        recipeManager.fetchRecipe(q: "")
+        recipeManager.fetchRecipe(q: query)
         
         self.title = "Resep Ku"
     }
 
     func didUpdateRecipes(recipes: [RecipeResponse]?) {
-        DispatchQueue.main.async {
-            self.recipe = recipes ?? []
-            self.recipeTable.reloadData()
+        if (recipes?.count ?? 0 <= 0) {
+            DispatchQueue.main.async {
+                self.showErrorView(error: "Search \"\(self.query)\" Not Found")
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.showRecipes(recipes: recipes ?? [])
+            }
         }
+    }
+    
+    private func showErrorView(error: String) {
+        self.viewEmpty.isHidden = false
+        self.recipeTable.isHidden = true
+        self.labelEmpty.text = error
+    }
+    
+    private func showRecipes(recipes: [RecipeResponse]) {
+        self.viewEmpty.isHidden = true
+        self.recipeTable.isHidden = false
+        self.recipe = recipes
+        self.recipeTable.reloadData()
     }
     
     func didFailWithError(error: Error?) {
         DispatchQueue.main.async {
-            print("didFailWithError: \(error.debugDescription)")
+            self.showErrorView(error: error?.localizedDescription ?? self.defaultError)
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        query = textField.text ?? ""
+        self.view.endEditing(true)
+        return search(query: query)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
+    private func search(query: String) -> Bool {
+        if (query.isEmpty() || query.isBlank()) {
+            return false
+        } else {
+            recipeManager.fetchRecipe(q: query)
+            return true
         }
     }
     
