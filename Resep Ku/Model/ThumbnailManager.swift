@@ -22,13 +22,11 @@ struct ThumbnailManager {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if (error != nil) {
-                print("fetchThumbnail: error: \(error?.localizedDescription)")
                 delegate?.didFailWithError(error: error!)
                 return
             }
             
             if let safeData = data {
-                print("fetchThumbnail: success")
                 delegate?.didUpdateThumbnail(data: safeData)
             }
         }
