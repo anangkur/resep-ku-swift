@@ -17,7 +17,6 @@ struct ThumbnailManager {
     var delegate: ThumbnailManagerDelegate?
     
     func fetchThumbnail(urlString: String) {
-        print("fetchThumbnail: \(urlString)")
         let url = URL(string: urlString)!
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in

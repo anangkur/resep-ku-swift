@@ -58,7 +58,6 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     @IBAction func openUrl(_ sender: Any) {
         let urlString = self.recipeResponse?.strSource ?? ""
         let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        print(urlEncoded)
         if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
@@ -68,7 +67,6 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     @IBAction func openYoutube(_ sender: Any) {
         let urlString = self.recipeResponse?.strYoutube ?? ""
         let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        print(urlEncoded)
         if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
