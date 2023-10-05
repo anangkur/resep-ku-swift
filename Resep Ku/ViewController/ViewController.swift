@@ -72,17 +72,9 @@ class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelega
         return search(query: query)
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.text = ""
-    }
-    
     private func search(query: String) -> Bool {
-        if (query.isEmpty() || query.isBlank()) {
-            return false
-        } else {
-            recipeManager.fetchRecipe(q: query)
-            return true
-        }
+        recipeManager.fetchRecipe(q: query)
+        return true
     }
     
     private func goToDetailRecipe(recipeResponse: RecipeResponse) {
