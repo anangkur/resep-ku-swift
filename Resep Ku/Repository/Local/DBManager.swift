@@ -27,14 +27,16 @@ class DBManager {
     
     func insertRecipe(recipe: RecipeObject) {
         try! database.write {
-            database.add(recipe)
+            database.add(recipe, update: .all)
         }
     }
     
     func deleteRecipe(recipeId: String) {
         let recipe = getRecipe(recipeId: recipeId)
         if let safeRecipe = recipe {
-            database.delete(safeRecipe)
+            try! database.write {
+                database.delete(safeRecipe)
+            }
         }
     }
 }

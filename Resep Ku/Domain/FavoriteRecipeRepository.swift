@@ -9,5 +9,6 @@ import Foundation
 
 protocol FavoriteRecipeRepository {
     func insertRecipe(recipe: RecipeObject)
-    func loadRecipe(recipeId: String) -> RecipeObject
+    func loadRecipe(recipeId: String) -> RecipeObject?
+    func deleteRecipe(recipeId: String)
 }

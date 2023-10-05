@@ -17,9 +17,12 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     @IBOutlet weak var labelCategory: UILabel!
     @IBOutlet weak var labelRecipe: UILabel!
     @IBOutlet weak var labelTags: UILabel!
+    @IBOutlet weak var buttonFavorite: UIButton!
+    @IBOutlet weak var buttonDeleteFavorite: UIButton!
     
     private var recipeResponse: RecipeResponse? = nil
     private var thumbnailManager = ThumbnailManager()
+    private let favoriteRepository = FavoriteRecipeRepositoryImpl.sharedInstance
     
     init(
         recipeResponse: RecipeResponse
@@ -43,6 +46,23 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
         self.labelIngridients.text = recipeResponse?.createRecipients() ?? "-"
         self.labelTags.text = recipeResponse?.strTags ?? ""
         thumbnailManager.fetchThumbnail(urlString: recipeResponse?.strMealThumb ?? "")
+        
+        checkFavorite()
+    }
+    
+    private func checkFavorite() {
+        let result: RecipeObject? = if let id = recipeResponse?.idMeal {
+            favoriteRepository.loadRecipe(recipeId: id)
+        } else {
+            nil
+        }
+        if (result != nil) {
+            self.buttonFavorite.isHidden = true
+            self.buttonDeleteFavorite.isHidden = false
+        } else {
+            self.buttonFavorite.isHidden = false
+            self.buttonDeleteFavorite.isHidden = true
+        }
     }
     
     func didFailWithError(error: Error) {
@@ -63,7 +83,6 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
         }
     }
     
-    
     @IBAction func openYoutube(_ sender: Any) {
         let urlString = self.recipeResponse?.strYoutube ?? ""
         let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
@@ -71,6 +90,23 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
             UIApplication.shared.open(url)
         }
     }
+    
+    @IBAction func saveToFavorite(_ sender: Any) {
+        if let recipeObject = recipeResponse?.toRecipeObject() {
+            favoriteRepository.insertRecipe(recipe: recipeObject)
+        }
+        checkFavorite()
+        showToast(message: "Success save to favorite!")
+    }
+    
+    @IBAction func deleteFavorite(_ sender: Any) {
+        if let recipeId = recipeResponse?.idMeal {
+            favoriteRepository.deleteRecipe(recipeId: recipeId)
+        }
+        checkFavorite()
+        showToast(message: "Success delete favorite!")
+    }
+    
     /*
     // MARK: - Navigation
 

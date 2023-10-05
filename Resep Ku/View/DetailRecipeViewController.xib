@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailRecipeViewController" customModule="Resep_Ku" customModuleProvider="target">
             <connections>
+                <outlet property="buttonDeleteFavorite" destination="wmh-fQ-5rN" id="ILh-1f-PEM"/>
+                <outlet property="buttonFavorite" destination="oJy-ek-XWi" id="UTA-gz-E5U"/>
                 <outlet property="iconWeb" destination="2sP-OW-3S3" id="dr4-rZ-RQr"/>
                 <outlet property="iconYoutube" destination="hbW-9A-cBT" id="f65-Kh-1Rg"/>
                 <outlet property="imageThumbnail" destination="05x-lj-GtR" id="Ora-su-TOD"/>
@@ -97,12 +100,32 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oJy-ek-XWi" userLabel="buttonSaveToFavorite">
+                                    <rect key="frame" x="214" y="297.33333333333331" width="145" height="38"/>
+                                    <accessibility key="accessibilityConfiguration" label="buttonSaveToFavorite"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Save to Favorite"/>
+                                    <connections>
+                                        <action selector="saveToFavorite:" destination="-1" eventType="touchUpInside" id="L4g-sN-cMV"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmh-fQ-5rN" userLabel="buttonDeleteFavorite">
+                                    <rect key="frame" x="221" y="297.33333333333331" width="138" height="38"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Delete Favorite"/>
+                                    <connections>
+                                        <action selector="deleteFavorite:" destination="-1" eventType="touchUpInside" id="shv-Ff-mUG"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="FUk-ct-z6G" firstAttribute="top" secondItem="LxM-Ul-bFX" secondAttribute="bottom" constant="8" id="1Eh-jl-xly"/>
                                 <constraint firstItem="QG8-jd-7NZ" firstAttribute="top" secondItem="cGD-bC-NZW" secondAttribute="bottom" constant="8" id="1nB-b6-Rid"/>
+                                <constraint firstAttribute="trailing" secondItem="wmh-fQ-5rN" secondAttribute="trailing" constant="16" id="AyD-9m-Rvg"/>
+                                <constraint firstItem="tDw-9X-HZ8" firstAttribute="top" secondItem="wmh-fQ-5rN" secondAttribute="bottom" constant="16" id="C4F-aY-2oH"/>
                                 <constraint firstAttribute="trailing" secondItem="QG8-jd-7NZ" secondAttribute="trailing" constant="16" id="DVz-Gl-Vqe"/>
+                                <constraint firstItem="tDw-9X-HZ8" firstAttribute="top" secondItem="oJy-ek-XWi" secondAttribute="bottom" constant="16" id="EHf-U1-5q0"/>
                                 <constraint firstItem="hbW-9A-cBT" firstAttribute="top" secondItem="2sP-OW-3S3" secondAttribute="top" id="G7O-GH-sss"/>
                                 <constraint firstAttribute="trailing" secondItem="05x-lj-GtR" secondAttribute="trailing" id="Jhy-UX-PgU"/>
                                 <constraint firstItem="tDw-9X-HZ8" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="LCN-gG-bnf"/>
@@ -120,12 +143,15 @@
                                 <constraint firstItem="Agr-Z5-9XB" firstAttribute="top" secondItem="tDw-9X-HZ8" secondAttribute="bottom" constant="8" id="aU1-wi-qCt"/>
                                 <constraint firstItem="cGD-bC-NZW" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="b60-s8-I7r"/>
                                 <constraint firstAttribute="trailing" secondItem="Agr-Z5-9XB" secondAttribute="trailing" constant="16" id="bxG-4S-uKt"/>
+                                <constraint firstItem="oJy-ek-XWi" firstAttribute="top" secondItem="05x-lj-GtR" secondAttribute="bottom" constant="16" id="cUb-XU-9Us"/>
                                 <constraint firstItem="LxM-Ul-bFX" firstAttribute="top" secondItem="PNR-Zr-QBB" secondAttribute="bottom" constant="16" id="ed1-Hr-KV1"/>
                                 <constraint firstAttribute="trailing" secondItem="cGD-bC-NZW" secondAttribute="trailing" constant="16" id="fMX-nM-hkN"/>
                                 <constraint firstItem="PNR-Zr-QBB" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="gqk-Im-1Wl"/>
+                                <constraint firstItem="wmh-fQ-5rN" firstAttribute="top" secondItem="05x-lj-GtR" secondAttribute="bottom" constant="16" id="jkx-j7-VVd"/>
                                 <constraint firstAttribute="trailing" secondItem="LxM-Ul-bFX" secondAttribute="trailing" constant="16" id="kIH-uR-WLg"/>
                                 <constraint firstItem="FUk-ct-z6G" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="mWN-rO-7YH"/>
                                 <constraint firstItem="Agr-Z5-9XB" firstAttribute="leading" secondItem="tWe-oy-iDC" secondAttribute="leading" constant="16" id="nRj-D2-1fs"/>
+                                <constraint firstAttribute="trailing" secondItem="oJy-ek-XWi" secondAttribute="trailing" constant="16" id="ohi-8n-a5Q"/>
                                 <constraint firstAttribute="trailing" secondItem="PNR-Zr-QBB" secondAttribute="trailing" constant="16" id="tDd-dl-PqN"/>
                                 <constraint firstItem="05x-lj-GtR" firstAttribute="top" secondItem="tWe-oy-iDC" secondAttribute="top" id="ujb-FW-pfD"/>
                             </constraints>
