@@ -10,10 +10,9 @@ import Foundation
 class FavoriteRecipeRepositoryImpl : FavoriteRecipeRepository {
     
     private var databaseManager: DBManager
-    static let sharedInstance = FavoriteRecipeRepositoryImpl()
     
-    private init() {
-        self.databaseManager = DBManager.sharedInstance
+    init(databaseManager: DBManager) {
+        self.databaseManager = databaseManager
     }
     
     func insertRecipe(recipe: RecipeObject) {

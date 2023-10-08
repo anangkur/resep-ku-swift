@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelegate {
+class ViewController: UIViewController, MainView, UITextFieldDelegate {
 
     @IBOutlet weak var labelEmpty: UILabel!
     @IBOutlet weak var viewEmpty: UIView!
@@ -17,25 +17,28 @@ class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelega
     private let defaultError = "Unknown Error"
     private var query = ""
     
-    var recipeManager = RecipeManager()
+    private var mainPresenter: MainPresenter? = nil
     
-    var recipe: [RecipeResponse] = []
+    private var recipe: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recipeTable.dataSource = self
-        recipeManager.delegate = self
-        textFieldSearch.delegate = self
+        self.mainPresenter = MainPresenter(view: self)
+        self.recipeTable.dataSource = self
+        self.textFieldSearch.delegate = self
         
-        recipeTable.register(UINib(nibName: "RecipeCell", bundle: nil), forCellReuseIdentifier: "ReuseIdentifier")
-        
-        recipeManager.fetchRecipe(q: query)
+        recipeTable.register(
+            UINib(nibName: "RecipeCell", bundle: nil),
+            forCellReuseIdentifier: "ReuseIdentifier"
+        )
         
         self.title = "Resep Ku"
+        
+        mainPresenter?.fetchRecipe(q: query)
     }
 
-    func didUpdateRecipes(recipes: [RecipeResponse]?) {
+    func didUpdateRecipes(recipes: [Recipe]?) {
         if (recipes?.count ?? 0 <= 0) {
             DispatchQueue.main.async {
                 self.showErrorView(error: "Search \"\(self.query)\" Not Found")
@@ -53,7 +56,7 @@ class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelega
         self.labelEmpty.text = error
     }
     
-    private func showRecipes(recipes: [RecipeResponse]) {
+    private func showRecipes(recipes: [Recipe]) {
         self.viewEmpty.isHidden = true
         self.recipeTable.isHidden = false
         self.recipe = recipes
@@ -73,12 +76,15 @@ class ViewController: UIViewController, RecipeManagerDelegate, UITextFieldDelega
     }
     
     private func search(query: String) -> Bool {
-        recipeManager.fetchRecipe(q: query)
+        mainPresenter?.fetchRecipe(q: query)
         return true
     }
     
-    private func goToDetailRecipe(recipeResponse: RecipeResponse) {
-        self.navigationController?.pushViewController(DetailRecipeViewController(recipeResponse: recipeResponse), animated: true)
+    private func goToDetailRecipe(recipe: Recipe) {
+        self.navigationController?.pushViewController(
+            DetailRecipeViewController(recipe: recipe),
+            animated: true
+        )
     }
 }
 
@@ -88,14 +94,17 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ReuseIdentifier", for: indexPath) as! RecipeCell
-        let recipeResponse = recipe[indexPath.row]
-        cell.labelTitle.text = recipeResponse.strMeal ?? "-"
-        cell.labelDescription.text = recipeResponse.createDescription()
-        cell.labelTags.text = recipeResponse.strTags
-        cell.fetchImage(urlString: recipeResponse.strMealThumb ?? "")
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "ReuseIdentifier",
+            for: indexPath
+        ) as! RecipeCell
+        let recipe = recipe[indexPath.row]
+        cell.labelTitle.text = recipe.strMeal ?? "-"
+        cell.labelDescription.text = recipe.createDescription()
+        cell.labelTags.text = recipe.strTags
+        cell.fetchImage(urlString: recipe.strMealThumb ?? "")
         cell.onClickItem = {
-            self.goToDetailRecipe(recipeResponse: recipeResponse)
+            self.goToDetailRecipe(recipe: recipe)
         }
         return cell
     }

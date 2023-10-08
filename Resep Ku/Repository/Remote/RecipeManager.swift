@@ -7,30 +7,27 @@
 
 import Foundation
 
-protocol RecipeManagerDelegate {
-    func didUpdateRecipes(recipes: [RecipeResponse]?)
-    func didFailWithError(error: Error?)
-}
-
 struct RecipeManager {
     
     let baseUrl = "https://www.themealdb.com/api/json/v1/1"
     
-    var delegate: RecipeManagerDelegate?
-    
-    func fetchRecipe(q: String) {
+    func fetchRecipe(
+        q: String,
+        onSuccess: @escaping ([RecipeResponse]?) -> Void,
+        onFail: @escaping (Error?) -> Void
+    ) {
         let urlString = "\(baseUrl)/search.php?s=\(q)"
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) {data,response,error in
+            let task = session.dataTask(with: url) { data, response, error in
                 if (error != nil) {
-                    delegate?.didFailWithError(error: error)
+                    onFail(error)
                     return
                 }
                 
                 if let safeData = data {
-                    if let searchRecipeResponse = parseJson(data: safeData) {
-                        delegate?.didUpdateRecipes(recipes: searchRecipeResponse.meals)
+                    if let searchRecipeResponse = parseJson(data: safeData, onFail: onFail) {
+                        onSuccess(searchRecipeResponse.meals)
                     }
                 }
             }
@@ -38,13 +35,16 @@ struct RecipeManager {
         }
     }
     
-    private func parseJson(data: Data) -> SearchRecipeResponse? {
+    private func parseJson(
+        data: Data,
+        onFail: (Error?) -> Void
+    ) -> SearchRecipeResponse? {
         let jsonDecoder = JSONDecoder()
         var returnValue: SearchRecipeResponse? = nil
         do {
             try returnValue = jsonDecoder.decode(SearchRecipeResponse.self, from: data)
         } catch {
-            delegate?.didFailWithError(error: error)
+            onFail(error)
         }
         return returnValue
     }

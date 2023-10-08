@@ -7,26 +7,23 @@
 
 import Foundation
 
-protocol ThumbnailManagerDelegate {
-    func didFailWithError(error: Error)
-    func didUpdateThumbnail(data: Data)
-}
-
 struct ThumbnailManager {
     
-    var delegate: ThumbnailManagerDelegate?
-    
-    func fetchThumbnail(urlString: String) {
+    func fetchThumbnail(
+        urlString: String,
+        onSuccess: @escaping (Data?) -> Void,
+        onFail: @escaping (Error?) -> Void
+    ) {
         let url = URL(string: urlString)!
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if (error != nil) {
-                delegate?.didFailWithError(error: error!)
+                onFail(error)
                 return
             }
             
             if let safeData = data {
-                delegate?.didUpdateThumbnail(data: safeData)
+                onSuccess(safeData)
             }
         }
         task.resume()

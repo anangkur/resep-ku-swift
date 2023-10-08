@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
+class DetailRecipeViewController: UIViewController, DetailRecipeView {
     
     @IBOutlet weak var imageThumbnail: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
@@ -20,14 +20,13 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     @IBOutlet weak var buttonFavorite: UIButton!
     @IBOutlet weak var buttonDeleteFavorite: UIButton!
     
-    private var recipeResponse: RecipeResponse? = nil
-    private var thumbnailManager = ThumbnailManager()
-    private let favoriteRepository = FavoriteRecipeRepositoryImpl.sharedInstance
+    private var recipe: Recipe? = nil
+    private var presenter: DetailRecipePresenter? = nil
     
     init(
-        recipeResponse: RecipeResponse
+        recipe: Recipe
     ) {
-        self.recipeResponse = recipeResponse
+        self.recipe = recipe
         super.init(nibName: "DetailRecipeViewController", bundle: Bundle.main)
     }
     
@@ -38,25 +37,20 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        thumbnailManager.delegate = self
-        self.title = recipeResponse?.strMeal ?? "Detail Recipe"
-        self.labelTitle.text = recipeResponse?.strMeal ?? "-"
-        self.labelRecipe.text = recipeResponse?.strInstructions ?? "-"
-        self.labelCategory.text = recipeResponse?.createDescription() ?? "-"
-        self.labelIngridients.text = recipeResponse?.createRecipients() ?? "-"
-        self.labelTags.text = recipeResponse?.strTags ?? ""
-        thumbnailManager.fetchThumbnail(urlString: recipeResponse?.strMealThumb ?? "")
+        presenter = DetailRecipePresenter(view: self)
+        self.title = recipe?.strMeal ?? "Detail Recipe"
+        self.labelTitle.text = recipe?.strMeal ?? "-"
+        self.labelRecipe.text = recipe?.strInstructions ?? "-"
+        self.labelCategory.text = recipe?.createDescription() ?? "-"
+        self.labelIngridients.text = recipe?.createRecipients() ?? "-"
+        self.labelTags.text = recipe?.strTags ?? "-"
+        presenter?.fetchThumbnail(urlString: recipe?.strMealThumb ?? "")
         
         checkFavorite()
     }
     
     private func checkFavorite() {
-        let result: RecipeObject? = if let id = recipeResponse?.idMeal {
-            favoriteRepository.loadRecipe(recipeId: id)
-        } else {
-            nil
-        }
-        if (result != nil) {
+        if (presenter?.isFavorite(recipeId: recipe?.idMeal ?? "") == true) {
             self.buttonFavorite.isHidden = true
             self.buttonDeleteFavorite.isHidden = false
         } else {
@@ -65,43 +59,45 @@ class DetailRecipeViewController: UIViewController, ThumbnailManagerDelegate {
         }
     }
     
-    func didFailWithError(error: Error) {
-        print(error)
+    func didFailWithError(error: Error?) {
+        print(error ?? "-")
     }
     
-    func didUpdateThumbnail(data: Data) {
+    func didUpdateThumbnail(data: Data?) {
         DispatchQueue.main.async {
-            self.imageThumbnail.image = UIImage(data: data)
+            if let safeData = data {
+                self.imageThumbnail.image = UIImage(data: safeData)
+            }
         }
     }
 
     @IBAction func openUrl(_ sender: Any) {
-        let urlString = self.recipeResponse?.strSource ?? ""
+        let urlString = self.recipe?.strSource ?? ""
         let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: urlEncoded), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
     
     @IBAction func openYoutube(_ sender: Any) {
-        let urlString = self.recipeResponse?.strYoutube ?? ""
+        let urlString = self.recipe?.strYoutube ?? ""
         let urlEncoded = urlString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: urlEncoded), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
     
     @IBAction func saveToFavorite(_ sender: Any) {
-        if let recipeObject = recipeResponse?.toRecipeObject() {
-            favoriteRepository.insertRecipe(recipe: recipeObject)
+        if let safeRecipe = self.recipe {
+            presenter?.insertRecipe(recipe: safeRecipe)
+            checkFavorite()
+            showToast(message: "Success save to favorite!")
         }
-        checkFavorite()
-        showToast(message: "Success save to favorite!")
     }
     
     @IBAction func deleteFavorite(_ sender: Any) {
-        if let recipeId = recipeResponse?.idMeal {
-            favoriteRepository.deleteRecipe(recipeId: recipeId)
+        if let recipeId = recipe?.idMeal {
+            presenter?.deleteRecipe(recipeId: recipeId)
         }
         checkFavorite()
         showToast(message: "Success delete favorite!")

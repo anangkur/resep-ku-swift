@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
+class RecipeCell: UITableViewCell, RecipeCellView {
 
     
     @IBOutlet weak var root: UIView!
@@ -17,12 +17,13 @@ class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
     @IBOutlet weak var labelDescription: UILabel!
     
     var onClickItem: (() -> Void)? = nil
-    private var thumbnailManager = ThumbnailManager()
+    
+    private var presenter: RecipeCellPresenter? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        thumbnailManager.delegate = self
+        presenter = RecipeCellPresenter(view: self)
         root.setOnClickListener { self.onClickItem?() }
     }
 
@@ -32,18 +33,20 @@ class RecipeCell: UITableViewCell, ThumbnailManagerDelegate {
         // Configure the view for the selected state
     }
     
-    func didFailWithError(error: Error) {
-        print(error)
+    func didFailWithError(error: Error?) {
+        print(error ?? "-")
     }
     
-    func didUpdateThumbnail(data: Data) {
+    func didUpdateThumbnail(data: Data?) {
         DispatchQueue.main.async {
-            self.imageRecipe.image = UIImage(data: data)
+            if let safeData = data {
+                self.imageRecipe.image = UIImage(data: safeData)
+            }
         }
     }
     
     func fetchImage(urlString: String) {
-        thumbnailManager.fetchThumbnail(urlString: urlString)
+        presenter?.fetchThumbnail(urlString: urlString)
     }
     
     private func onItemClicked(sender : UITapGestureRecognizer) {
