@@ -38,4 +38,8 @@ class DBManager {
             }
         }
     }
+    
+    func getAllRecipe() -> [RecipeObject] {
+        return Array(database.objects(RecipeObject.self))
+    }
 }

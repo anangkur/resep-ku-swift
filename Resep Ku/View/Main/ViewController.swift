@@ -34,8 +34,21 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
         )
         
         self.title = "Resep Ku"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Favorite",
+            style: .plain,
+            target: self,
+            action: #selector(goToFavoriteRecipe)
+        )
         
         mainPresenter?.fetchRecipe(q: query)
+    }
+    
+    @objc func goToFavoriteRecipe() {
+        self.navigationController?.pushViewController(
+            FavoriteViewController(),
+            animated: true
+        )
     }
 
     func didUpdateRecipes(recipes: [Recipe]?) {

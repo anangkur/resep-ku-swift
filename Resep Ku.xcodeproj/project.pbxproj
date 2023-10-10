@@ -28,6 +28,10 @@
 		DE9157BC2A24B3DD003D45E8 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BA2A24B3DD003D45E8 /* ViewController.storyboard */; };
 		DE9157BE2A24B3DF003D45E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BD2A24B3DF003D45E8 /* Assets.xcassets */; };
 		DE9157C12A24B3DF003D45E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BF2A24B3DF003D45E8 /* LaunchScreen.storyboard */; };
+		DEAC860B2AD55FEF00F452C3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC86092AD55FEF00F452C3 /* FavoriteViewController.swift */; };
+		DEAC860C2AD55FEF00F452C3 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEAC860A2AD55FEF00F452C3 /* FavoriteViewController.xib */; };
+		DEAC860E2AD5666A00F452C3 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC860D2AD5666A00F452C3 /* FavoriteView.swift */; };
+		DEAC86102AD5667500F452C3 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC860F2AD5667500F452C3 /* FavoritePresenter.swift */; };
 		DEBAFDA52AA1AF5900DE67ED /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAFDA42AA1AF5900DE67ED /* StringExtension.swift */; };
 		DEC1B0162A270947003EBD8C /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC1B0152A270947003EBD8C /* RecipeResponse.swift */; };
 		DEC1B0182A273F13003EBD8C /* SearchRecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC1B0172A273F13003EBD8C /* SearchRecipeResponse.swift */; };
@@ -65,6 +69,10 @@
 		DE9157BD2A24B3DF003D45E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9157C02A24B3DF003D45E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9157C22A24B3DF003D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEAC86092AD55FEF00F452C3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		DEAC860A2AD55FEF00F452C3 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		DEAC860D2AD5666A00F452C3 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		DEAC860F2AD5667500F452C3 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		DEBAFDA42AA1AF5900DE67ED /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		DEC1B0152A270947003EBD8C /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 		DEC1B0172A273F13003EBD8C /* SearchRecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipeResponse.swift; sourceTree = "<group>"; };
@@ -102,6 +110,7 @@
 		DE640C082A28E76E003518D0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DEAC86042AD55C0C00F452C3 /* FavoriteRecipe */,
 				DE68AB4D2AD29B76006207F8 /* DetailRecipe */,
 				DE68AB4C2AD29B58006207F8 /* Main */,
 			);
@@ -218,6 +227,17 @@
 			path = "Resep Ku";
 			sourceTree = "<group>";
 		};
+		DEAC86042AD55C0C00F452C3 /* FavoriteRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				DEAC86092AD55FEF00F452C3 /* FavoriteViewController.swift */,
+				DEAC860A2AD55FEF00F452C3 /* FavoriteViewController.xib */,
+				DEAC860D2AD5666A00F452C3 /* FavoriteView.swift */,
+				DEAC860F2AD5667500F452C3 /* FavoritePresenter.swift */,
+			);
+			path = FavoriteRecipe;
+			sourceTree = "<group>";
+		};
 		DEEEAD8B2ACEB540001B6881 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +342,7 @@
 			files = (
 				DE9157C12A24B3DF003D45E8 /* LaunchScreen.storyboard in Resources */,
 				DE9157BE2A24B3DF003D45E8 /* Assets.xcassets in Resources */,
+				DEAC860C2AD55FEF00F452C3 /* FavoriteViewController.xib in Resources */,
 				DE5736222A85EAD3001E5C02 /* DetailRecipeViewController.xib in Resources */,
 				DE9157BC2A24B3DD003D45E8 /* ViewController.storyboard in Resources */,
 				DE640C0D2A28E823003518D0 /* RecipeCell.xib in Resources */,
@@ -341,6 +362,7 @@
 				DEEEAD902ACEBCFF001B6881 /* FavoriteRecipeRepository.swift in Sources */,
 				DEEEAD962ACECF97001B6881 /* UiViewControllerExtension.swift in Sources */,
 				DE68AB502AD29BEC006207F8 /* MainView.swift in Sources */,
+				DEAC86102AD5667500F452C3 /* FavoritePresenter.swift in Sources */,
 				DE0A2D272A28F47E00A50113 /* ThumbnailManager.swift in Sources */,
 				DE9157B92A24B3DD003D45E8 /* ViewController.swift in Sources */,
 				DEEEAD8A2ACEB133001B6881 /* RecipeObject.swift in Sources */,
@@ -351,11 +373,13 @@
 				DE640C0C2A28E823003518D0 /* RecipeCell.swift in Sources */,
 				DEC1B01B2A274A2F003EBD8C /* RecipeManager.swift in Sources */,
 				DE68AB662AD2BFFE006207F8 /* RecipeCellPresenter.swift in Sources */,
+				DEAC860E2AD5666A00F452C3 /* FavoriteView.swift in Sources */,
 				DE9157B72A24B3DD003D45E8 /* SceneDelegate.swift in Sources */,
 				DE68AB4B2AD294E2006207F8 /* RecipeRepositoryImpl.swift in Sources */,
 				DE68AB462AD291BE006207F8 /* RecipeRepository.swift in Sources */,
 				DE68AB642AD2BFCB006207F8 /* RecipeCellView.swift in Sources */,
 				DEEEAD932ACEBDCC001B6881 /* FavoriteRecipeRepositoryImpl.swift in Sources */,
+				DEAC860B2AD55FEF00F452C3 /* FavoriteViewController.swift in Sources */,
 				DEBAFDA52AA1AF5900DE67ED /* StringExtension.swift in Sources */,
 				DEC1B0162A270947003EBD8C /* RecipeResponse.swift in Sources */,
 				DE68AB582AD29D25006207F8 /* MainPresenter.swift in Sources */,
