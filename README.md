@@ -6,10 +6,6 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
-
-
-
-
 <!-- PROJECT SHIELDS -->
 <!--
 *** I'm using markdown "reference style" links for readability.
@@ -24,10 +20,26 @@
 this is a playground for me learning ios app development with swift language and interface builder
 
 ## Features
-- List of Recipes.
-- Details of Recipes.
-- Save Recipes into Favorites.
-- Search Recipes.
+<table>
+  <tr>
+    <td><img src="Screenshots/Main.png" alt="Main"></td>
+    <td><img src="Screenshots/Main-EmptyState.png" alt="Empty State"></td>
+    <td><img src="Screenshots/Main-AutoComplete.png" alt="Auto Complete"></td>
+  </tr>
+  <tr>
+    <td align="center">Main</td>
+    <td align="center">Empty State</td>
+    <td align="center">Auto Complete</td>
+  </tr>
+  <tr>
+    <td><img src="Screenshots/DetailRecipe.png" alt="Detail"></td>
+    <td><img src="Screenshots/FavoriteRecipe.png" alt="Favorite"></td>
+  </tr>
+  <tr>
+    <td align="center">Detail</td>
+    <td align="center">Favorite</td>
+  </tr>
+ </table>
 
 ## Built With
 * [XCode](https://developer.apple.com/documentation/xcode)
@@ -36,6 +48,7 @@ this is a playground for me learning ios app development with swift language and
 * [The Meal DB API](https://www.themealdb.com/api.php)
 * [Realm](https://realm.io/)
 * [FlatIcon](https://www.flaticon.com/)
+* [RVS_AutofillTextField](https://github.com/RiftValleySoftware/RVS_AutofillTextField/)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -46,13 +59,10 @@ this is a playground for me learning ios app development with swift language and
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
