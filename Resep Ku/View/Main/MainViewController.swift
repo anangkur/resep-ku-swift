@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import RVS_AutofillTextField
 
-class ViewController: UIViewController, MainView, UITextFieldDelegate {
+class MainViewController: UIViewController, MainView, UITextFieldDelegate, RVS_AutofillTextFieldDataSource {
 
     @IBOutlet weak var labelEmpty: UILabel!
     @IBOutlet weak var viewEmpty: UIView!
-    @IBOutlet weak var textFieldSearch: UITextField!
+    @IBOutlet weak var textFieldSearch: RVS_AutofillTextField!
     @IBOutlet weak var recipeTable: UITableView!
     
     private let defaultError = "Unknown Error"
@@ -20,6 +21,20 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
     private var mainPresenter: MainPresenter? = nil
     
     private var recipe: [Recipe] = []
+    private var keywords: [String] = []
+    
+    internal var textDictionary: [RVS_AutofillTextFieldDataSourceType] {
+        var index = 0
+        let ret: [RVS_AutofillTextFieldDataSourceType] = keywords.compactMap {
+            let currentStr = $0.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !currentStr.isEmpty {
+                defer { index += 1 }
+                return RVS_AutofillTextFieldDataSourceType(value: currentStr, refCon: index)
+            }
+            return nil
+        }
+        return ret
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +42,8 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
         self.mainPresenter = MainPresenter(view: self)
         self.recipeTable.dataSource = self
         self.textFieldSearch.delegate = self
+        self.textFieldSearch.dataSource = self
+        self.textFieldSearch.maximumAutofillCount = 3
         
         recipeTable.register(
             UINib(nibName: "RecipeCell", bundle: nil),
@@ -42,6 +59,7 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
         )
         
         mainPresenter?.fetchRecipe(q: query)
+        mainPresenter?.fetchKeyword()
     }
     
     @objc func goToFavoriteRecipe() {
@@ -83,13 +101,10 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        query = textField.text ?? ""
         self.view.endEditing(true)
-        return search(query: query)
-    }
-    
-    private func search(query: String) -> Bool {
+        query = textField.text ?? ""
         mainPresenter?.fetchRecipe(q: query)
+        mainPresenter?.fetchKeyword()
         return true
     }
     
@@ -99,9 +114,20 @@ class ViewController: UIViewController, MainView, UITextFieldDelegate {
             animated: true
         )
     }
+    
+    func didUpdateKeyword(keywords: [String]) {
+        self.keywords.removeAll()
+        self.keywords = keywords
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        query = textField.text ?? ""
+        mainPresenter?.fetchRecipe(q: query)
+        mainPresenter?.fetchKeyword()
+    }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipe.count
     }
@@ -111,14 +137,15 @@ extension ViewController: UITableViewDataSource {
             withIdentifier: "ReuseIdentifier",
             for: indexPath
         ) as! RecipeCell
+        
         let recipe = recipe[indexPath.row]
+        
         cell.labelTitle.text = recipe.strMeal ?? "-"
         cell.labelDescription.text = recipe.createDescription()
         cell.labelTags.text = recipe.strTags
         cell.fetchImage(urlString: recipe.strMealThumb ?? "")
-        cell.onClickItem = {
-            self.goToDetailRecipe(recipe: recipe)
-        }
+        cell.onClickItem = { self.goToDetailRecipe(recipe: recipe) }
+        
         return cell
     }
 }

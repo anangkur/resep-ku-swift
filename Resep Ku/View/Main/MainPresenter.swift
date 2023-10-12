@@ -11,16 +11,21 @@ class MainPresenter {
     
     private var view: MainView
     
-    private var recipeManager: RecipeManager
+    private var dbManager: DBManager
     private var recipeRepository: RecipeRepository
+    private var keywordRepository: KeywordRepository
     
     init(view: MainView) {
         self.view = view
-        self.recipeManager = RecipeManager()
-        self.recipeRepository = RecipeRepositoryImpl(recipeManager: self.recipeManager)
+        self.dbManager = DBManager()
+        self.recipeRepository = RecipeRepositoryImpl(recipeManager: RecipeManager())
+        self.keywordRepository = KeywordRepositoryImpl(dbManager: dbManager)
     }
     
     func fetchRecipe(q: String) {
+        if (!q.isEmpty() && !q.isBlank()) {
+            keywordRepository.insertKeyword(keyword: q)
+        }
         recipeRepository.fetchRecipe(
             q: q,
             onSuccess: { (recipeResponseList: [RecipeResponse]?) -> Void in
@@ -34,5 +39,9 @@ class MainPresenter {
                 self.view.didFailWithError(error: error)
             }
         )
+    }
+    
+    func fetchKeyword() {
+        view.didUpdateKeyword(keywords: keywordRepository.readKeyword())
     }
 }

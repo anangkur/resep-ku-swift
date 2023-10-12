@@ -10,4 +10,5 @@ import Foundation
 protocol MainView {
     func didUpdateRecipes(recipes: [Recipe]?)
     func didFailWithError(error: Error?)
+    func didUpdateKeyword(keywords: [String])
 }

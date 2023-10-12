@@ -42,4 +42,17 @@ class DBManager {
     func getAllRecipe() -> [RecipeObject] {
         return Array(database.objects(RecipeObject.self))
     }
+    
+    func insertKeyword(keyword: String) {
+        try! database.write {
+            database.add(KeywordObject(keyword: keyword), update: .all)
+        }
+    }
+    
+    func getKeyword() -> [String] {
+        let result = Array(
+            database.objects(KeywordObject.self)
+        )
+        return result.map { $0.keyword ?? "" }
+    }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DE0A2D272A28F47E00A50113 /* ThumbnailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0A2D262A28F47E00A50113 /* ThumbnailManager.swift */; };
+		DE1EE6CB2AD7CFFC00040A75 /* RVS_AutofillTextField in Frameworks */ = {isa = PBXBuildFile; productRef = DE1EE6CA2AD7CFFC00040A75 /* RVS_AutofillTextField */; };
 		DE5736172A85E465001E5C02 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5736162A85E465001E5C02 /* ViewExtension.swift */; };
 		DE5736212A85EAD3001E5C02 /* DetailRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE57361F2A85EAD3001E5C02 /* DetailRecipeViewController.swift */; };
 		DE5736222A85EAD3001E5C02 /* DetailRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE5736202A85EAD3001E5C02 /* DetailRecipeViewController.xib */; };
@@ -24,10 +25,13 @@
 		DE68AB662AD2BFFE006207F8 /* RecipeCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE68AB652AD2BFFE006207F8 /* RecipeCellPresenter.swift */; };
 		DE9157B52A24B3DD003D45E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9157B42A24B3DD003D45E8 /* AppDelegate.swift */; };
 		DE9157B72A24B3DD003D45E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9157B62A24B3DD003D45E8 /* SceneDelegate.swift */; };
-		DE9157B92A24B3DD003D45E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9157B82A24B3DD003D45E8 /* ViewController.swift */; };
-		DE9157BC2A24B3DD003D45E8 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BA2A24B3DD003D45E8 /* ViewController.storyboard */; };
+		DE9157B92A24B3DD003D45E8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9157B82A24B3DD003D45E8 /* MainViewController.swift */; };
+		DE9157BC2A24B3DD003D45E8 /* MainViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BA2A24B3DD003D45E8 /* MainViewController.storyboard */; };
 		DE9157BE2A24B3DF003D45E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BD2A24B3DF003D45E8 /* Assets.xcassets */; };
 		DE9157C12A24B3DF003D45E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9157BF2A24B3DF003D45E8 /* LaunchScreen.storyboard */; };
+		DE9B919B2AD671F20017E73A /* KeywordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B919A2AD671F20017E73A /* KeywordObject.swift */; };
+		DE9B919D2AD6733E0017E73A /* KeywordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B919C2AD6733E0017E73A /* KeywordRepository.swift */; };
+		DE9B919F2AD67B780017E73A /* KeywordRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9B919E2AD67B780017E73A /* KeywordRepositoryImpl.swift */; };
 		DEAC860B2AD55FEF00F452C3 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC86092AD55FEF00F452C3 /* FavoriteViewController.swift */; };
 		DEAC860C2AD55FEF00F452C3 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEAC860A2AD55FEF00F452C3 /* FavoriteViewController.xib */; };
 		DEAC860E2AD5666A00F452C3 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAC860D2AD5666A00F452C3 /* FavoriteView.swift */; };
@@ -64,11 +68,14 @@
 		DE9157B12A24B3DD003D45E8 /* Resep Ku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Resep Ku.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9157B42A24B3DD003D45E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9157B62A24B3DD003D45E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE9157B82A24B3DD003D45E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		DE9157BB2A24B3DD003D45E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ViewController.storyboard; sourceTree = "<group>"; };
+		DE9157B82A24B3DD003D45E8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DE9157BB2A24B3DD003D45E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainViewController.storyboard; sourceTree = "<group>"; };
 		DE9157BD2A24B3DF003D45E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9157C02A24B3DF003D45E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9157C22A24B3DF003D45E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE9B919A2AD671F20017E73A /* KeywordObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordObject.swift; sourceTree = "<group>"; };
+		DE9B919C2AD6733E0017E73A /* KeywordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordRepository.swift; sourceTree = "<group>"; };
+		DE9B919E2AD67B780017E73A /* KeywordRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordRepositoryImpl.swift; sourceTree = "<group>"; };
 		DEAC86092AD55FEF00F452C3 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		DEAC860A2AD55FEF00F452C3 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
 		DEAC860D2AD5666A00F452C3 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -91,12 +98,23 @@
 			files = (
 				DEEEAD872ACEAFA3001B6881 /* RealmSwift in Frameworks */,
 				DEEEAD852ACEAFA3001B6881 /* Realm in Frameworks */,
+				DE1EE6CB2AD7CFFC00040A75 /* RVS_AutofillTextField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE1EE6C82AD7A3DD00040A75 /* RepositoryImpl */ = {
+			isa = PBXGroup;
+			children = (
+				DEEEAD922ACEBDCC001B6881 /* FavoriteRecipeRepositoryImpl.swift */,
+				DE68AB4A2AD294E2006207F8 /* RecipeRepositoryImpl.swift */,
+				DE9B919E2AD67B780017E73A /* KeywordRepositoryImpl.swift */,
+			);
+			path = RepositoryImpl;
+			sourceTree = "<group>";
+		};
 		DE5736152A85E44E001E5C02 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,8 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				DE68AB4E2AD29BA9006207F8 /* RecipeItem */,
-				DE9157BA2A24B3DD003D45E8 /* ViewController.storyboard */,
-				DE9157B82A24B3DD003D45E8 /* ViewController.swift */,
+				DE9157BA2A24B3DD003D45E8 /* MainViewController.storyboard */,
+				DE9157B82A24B3DD003D45E8 /* MainViewController.swift */,
 				DE68AB4F2AD29BEC006207F8 /* MainView.swift */,
 				DE68AB572AD29D25006207F8 /* MainPresenter.swift */,
 			);
@@ -191,6 +209,7 @@
 			children = (
 				DEEEAD8F2ACEBCFF001B6881 /* FavoriteRecipeRepository.swift */,
 				DE68AB452AD291BE006207F8 /* RecipeRepository.swift */,
+				DE9B919C2AD6733E0017E73A /* KeywordRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -215,7 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				DEEEAD912ACEBDAE001B6881 /* Domain */,
-				DEEEAD8B2ACEB540001B6881 /* Repository */,
+				DEEEAD8B2ACEB540001B6881 /* Data */,
 				DE5736152A85E44E001E5C02 /* Helper */,
 				DE640C082A28E76E003518D0 /* View */,
 				DE9157B42A24B3DD003D45E8 /* AppDelegate.swift */,
@@ -238,15 +257,14 @@
 			path = FavoriteRecipe;
 			sourceTree = "<group>";
 		};
-		DEEEAD8B2ACEB540001B6881 /* Repository */ = {
+		DEEEAD8B2ACEB540001B6881 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				DE1EE6C82AD7A3DD00040A75 /* RepositoryImpl */,
 				DE68AB472AD292E1006207F8 /* Remote */,
 				DEEEAD8C2ACEB54E001B6881 /* Local */,
-				DEEEAD922ACEBDCC001B6881 /* FavoriteRecipeRepositoryImpl.swift */,
-				DE68AB4A2AD294E2006207F8 /* RecipeRepositoryImpl.swift */,
 			);
-			path = Repository;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		DEEEAD8C2ACEB54E001B6881 /* Local */ = {
@@ -271,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				DEEEAD892ACEB133001B6881 /* RecipeObject.swift */,
+				DE9B919A2AD671F20017E73A /* KeywordObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -294,6 +313,7 @@
 			packageProductDependencies = (
 				DEEEAD842ACEAFA3001B6881 /* Realm */,
 				DEEEAD862ACEAFA3001B6881 /* RealmSwift */,
+				DE1EE6CA2AD7CFFC00040A75 /* RVS_AutofillTextField */,
 			);
 			productName = "Resep Ku";
 			productReference = DE9157B12A24B3DD003D45E8 /* Resep Ku.app */;
@@ -325,6 +345,7 @@
 			mainGroup = DE9157A82A24B3DD003D45E8;
 			packageReferences = (
 				DEEEAD832ACEAFA3001B6881 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DE1EE6C92AD7CFFC00040A75 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */,
 			);
 			productRefGroup = DE9157B22A24B3DD003D45E8 /* Products */;
 			projectDirPath = "";
@@ -344,7 +365,7 @@
 				DE9157BE2A24B3DF003D45E8 /* Assets.xcassets in Resources */,
 				DEAC860C2AD55FEF00F452C3 /* FavoriteViewController.xib in Resources */,
 				DE5736222A85EAD3001E5C02 /* DetailRecipeViewController.xib in Resources */,
-				DE9157BC2A24B3DD003D45E8 /* ViewController.storyboard in Resources */,
+				DE9157BC2A24B3DD003D45E8 /* MainViewController.storyboard in Resources */,
 				DE640C0D2A28E823003518D0 /* RecipeCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +385,8 @@
 				DE68AB502AD29BEC006207F8 /* MainView.swift in Sources */,
 				DEAC86102AD5667500F452C3 /* FavoritePresenter.swift in Sources */,
 				DE0A2D272A28F47E00A50113 /* ThumbnailManager.swift in Sources */,
-				DE9157B92A24B3DD003D45E8 /* ViewController.swift in Sources */,
+				DE9157B92A24B3DD003D45E8 /* MainViewController.swift in Sources */,
+				DE9B919D2AD6733E0017E73A /* KeywordRepository.swift in Sources */,
 				DEEEAD8A2ACEB133001B6881 /* RecipeObject.swift in Sources */,
 				DE68AB5E2AD2B3C5006207F8 /* DetailRecipeView.swift in Sources */,
 				DEC1B0182A273F13003EBD8C /* SearchRecipeResponse.swift in Sources */,
@@ -376,7 +398,9 @@
 				DEAC860E2AD5666A00F452C3 /* FavoriteView.swift in Sources */,
 				DE9157B72A24B3DD003D45E8 /* SceneDelegate.swift in Sources */,
 				DE68AB4B2AD294E2006207F8 /* RecipeRepositoryImpl.swift in Sources */,
+				DE9B919B2AD671F20017E73A /* KeywordObject.swift in Sources */,
 				DE68AB462AD291BE006207F8 /* RecipeRepository.swift in Sources */,
+				DE9B919F2AD67B780017E73A /* KeywordRepositoryImpl.swift in Sources */,
 				DE68AB642AD2BFCB006207F8 /* RecipeCellView.swift in Sources */,
 				DEEEAD932ACEBDCC001B6881 /* FavoriteRecipeRepositoryImpl.swift in Sources */,
 				DEAC860B2AD55FEF00F452C3 /* FavoriteViewController.swift in Sources */,
@@ -390,12 +414,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DE9157BA2A24B3DD003D45E8 /* ViewController.storyboard */ = {
+		DE9157BA2A24B3DD003D45E8 /* MainViewController.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DE9157BB2A24B3DD003D45E8 /* Base */,
 			);
-			name = ViewController.storyboard;
+			name = MainViewController.storyboard;
 			sourceTree = "<group>";
 		};
 		DE9157BF2A24B3DF003D45E8 /* LaunchScreen.storyboard */ = {
@@ -536,7 +560,7 @@
 				INFOPLIST_FILE = "Resep Ku/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = ViewController;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -563,7 +587,7 @@
 				INFOPLIST_FILE = "Resep Ku/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = ViewController;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -603,6 +627,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE1EE6C92AD7CFFC00040A75 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RiftValleySoftware/RVS_AutofillTextField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.5;
+			};
+		};
 		DEEEAD832ACEAFA3001B6881 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -614,6 +646,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE1EE6CA2AD7CFFC00040A75 /* RVS_AutofillTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE1EE6C92AD7CFFC00040A75 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */;
+			productName = RVS_AutofillTextField;
+		};
 		DEEEAD842ACEAFA3001B6881 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DEEEAD832ACEAFA3001B6881 /* XCRemoteSwiftPackageReference "realm-swift" */;
